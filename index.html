@@ -1,0 +1,170 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script> 
+
+// Function that randomly returns 'Rock', 'Paper', Scissors.
+
+function computerPlay (rps,random) {
+    rps = ["Rock", "Paper", "Scissors"];
+    random = rps[Math.floor(Math.random()* 3)];
+    
+    return random;
+}
+
+
+let playerScore = 0;
+let computerScore = 0;
+
+// Functions that plays a single round of RPS
+function playRound (playerSelection, computerSelection, result) {
+
+
+// The player's choice 
+ playerSelection = prompt("Rock, Paper or Scissors, champion :) ?");
+ playerSelection = playerSelection.toLowerCase();
+ console.log(playerSelection);
+
+ // The computer's choice 
+ computerSelection = computerPlay();
+ computerSelection = computerSelection.toLowerCase();
+ console.log(computerSelection);
+
+
+ 
+ // Comparisons 
+
+   // Comparison for rock 
+
+ if (playerSelection == "rock") 
+   {
+       if(computerSelection == "paper") 
+       { 
+           result = "You lose ! Paper beats Rock";
+           alert(result);
+        
+       }
+       else if (computerSelection == "scissors")
+       {
+            result = "You win ! Rock beats Scissors";
+            alert(result);
+            
+       }
+       else if (computerSelection == "rock") 
+       {
+          result = "Draw, Rock equals Rock";
+          alert(result);
+       }
+    }
+
+   // Comparison for paper 
+
+    else if (playerSelection == "paper")
+    {
+       if(computerSelection == "paper") 
+       { 
+        result ="Draw, Paper equals Paper";
+        alert(result);
+       }
+       else if (computerSelection == "scissors")
+       {
+        result ="You lose ! Scissors beats Paper";
+        alert(result);
+
+       }
+       else if (computerSelection == "rock") 
+       {
+        result = "You win, Paper beats Rock";
+        alert(result);
+       }
+     }
+
+       // Comparison for scissors  
+
+     else if (playerSelection == "scissors")
+    {
+       if(computerSelection == "paper") 
+       { 
+        result = "You win, Scissors beats Paper";
+        alert(result);
+       }
+       else if (computerSelection == "scissors")
+       {
+        result = "Draw, scissors equals scissors";
+        alert(result);
+
+       }
+       else if (computerSelection == "rock") 
+       {
+        result = "You lose, Rock beats scissors";
+        alert(result);
+       }
+      }
+
+      // Invalid input
+      else 
+      { result ="The choice you picked is invalid, try again ! ";
+      alert(result);
+    };
+
+    console.log(result);
+
+       // Score keeping 
+       
+    if (result.includes("win")) {
+        playerScore = ++playerScore;
+    } 
+    else if (result.includes("lose")) {
+        computerScore = ++computerScore;
+    }
+    else if (result.includes("Draw")) {
+        playerScore = ++playerScore;
+        computerScore = ++computerScore;
+    }
+
+    console.log(playerScore,computerScore);
+   
+};
+
+
+function game() {
+
+    
+    for (let i = 0; i < 5; i++) {
+        playRound(); 
+    }
+
+    if (playerScore > computerScore) {
+        alert (" You are the winner of these 5 rounds");
+    }
+    else if (playerScore < computerScore) { alert ("You lost these 5 rounds to the computer")
+}
+
+    else if (playerScore == computerScore) { alert(" Your score is equal to the score of the computer")}
+       
+
+    };
+
+game();
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
