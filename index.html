@@ -4,8 +4,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    
 </head>
 <body>
+
+    <div class="wrapper">
+        
+        <div class="play"> Let's play Rock, Paper and Scissors ! The winner is the first one who wins 5 rounds </div> 
+
+        <div class="play"> Pick one Selection ! </div>
+
+        <div class="selection"> 
+
+            <div class="block"> 
+                <img src="rock.png" alt="">
+                <button class="Rock"> Rock  </button>
+            </div>
+
+            <div class="block"> 
+                <img src="paper.png" alt="">
+                <button class="Paper"> Paper </button>
+            </div>
+        
+            <div class="block"> 
+                <img src="scissors.png" alt="">
+                <button class="Scissors"> Scissors </button>
+            </div>
+
+        </div>
+        
+        <div class="rslt"> Results of the Rounds </div>
+
+        <div class="score"> 
+
+            <div class ="me1"> 
+        <div class="myScore1"> Player Score </div>
+        <h1 class="firsth1">  </h1>
+
+            </div>
+
+            <div class="me2"> 
+        <div class="myScore2"> Computer Score </div>
+        <h1 class="secondh1"> </h1>
+    
+            </div>
+
+        </div>
+
+        <h1 class="resultDeclaration"> </h1>
+
+        <h1 class="declaration"> </h1>
+
+    
+    </div>
+
     
 <script> 
 
@@ -21,13 +76,14 @@ function computerPlay (rps,random) {
 
 let playerScore = 0;
 let computerScore = 0;
+let result = "";
 
 // Functions that plays a single round of RPS
-function playRound (playerSelection, computerSelection, result) {
+function playRound (playerSelection, computerSelection) {
+
 
 
 // The player's choice 
- playerSelection = prompt("Rock, Paper or Scissors, champion :) ?");
  playerSelection = playerSelection.toLowerCase();
  console.log(playerSelection);
 
@@ -36,8 +92,6 @@ function playRound (playerSelection, computerSelection, result) {
  computerSelection = computerSelection.toLowerCase();
  console.log(computerSelection);
 
-
- 
  // Comparisons 
 
    // Comparison for rock 
@@ -47,19 +101,18 @@ function playRound (playerSelection, computerSelection, result) {
        if(computerSelection == "paper") 
        { 
            result = "You lose ! Paper beats Rock";
-           alert(result);
+        
         
        }
        else if (computerSelection == "scissors")
        {
             result = "You win ! Rock beats Scissors";
-            alert(result);
-            
+          
        }
        else if (computerSelection == "rock") 
        {
           result = "Draw, Rock equals Rock";
-          alert(result);
+     
        }
     }
 
@@ -70,18 +123,18 @@ function playRound (playerSelection, computerSelection, result) {
        if(computerSelection == "paper") 
        { 
         result ="Draw, Paper equals Paper";
-        alert(result);
+        
        }
        else if (computerSelection == "scissors")
        {
         result ="You lose ! Scissors beats Paper";
-        alert(result);
+       
 
        }
        else if (computerSelection == "rock") 
        {
         result = "You win, Paper beats Rock";
-        alert(result);
+       
        }
      }
 
@@ -92,25 +145,24 @@ function playRound (playerSelection, computerSelection, result) {
        if(computerSelection == "paper") 
        { 
         result = "You win, Scissors beats Paper";
-        alert(result);
+        
        }
        else if (computerSelection == "scissors")
        {
         result = "Draw, scissors equals scissors";
-        alert(result);
+        
 
        }
        else if (computerSelection == "rock") 
        {
         result = "You lose, Rock beats scissors";
-        alert(result);
+        
        }
       }
 
       // Invalid input
       else 
       { result ="The choice you picked is invalid, try again ! ";
-      alert(result);
     };
 
     console.log(result);
@@ -132,34 +184,119 @@ function playRound (playerSelection, computerSelection, result) {
    
 };
 
+const btnRock = document.querySelector('.Rock')
 
-function game() {
 
+btnRock.addEventListener('click', () => {
+    playRound("Rock");
     
-    for (let i = 0; i < 5; i++) {
-        playRound(); 
+    let newPlayerScore = document.querySelector('.firsth1');
+    newPlayerScore.textContent = playerScore;
+
+    let newComputerScore = document.querySelector('.secondh1');
+    newComputerScore.textContent = computerScore;
+
+    let newResult = document.querySelector('.resultDeclaration');
+    newResult.textContent = result;
+
+    if (playerScore == 5) {
+        const winner = document.querySelector('.declaration');
+        winner.textContent = "You Rock Because You Won And The Computer Lost";
+        playerScore = 0;
+        computerScore = 0;
     }
 
-    if (playerScore > computerScore) {
-        alert (" You are the winner of these 5 rounds");
+    else if (computerScore == 5) {
+
+        const winner = document.querySelector('.declaration');
+        winner.textContent = "You Do Not Rock Because You Lost and The Computer Won";
+        playerScore = 0;
+        computerScore = 0;
+
     }
-    else if (playerScore < computerScore) { alert ("You lost these 5 rounds to the computer")
-}
 
-    else if (playerScore == computerScore) { alert(" Your score is equal to the score of the computer")}
-       
+    else if (playerScore == 0 || computerScore == 0 || (playerScore == 1 && computerScore == 1)) {
+        const winner = document.querySelector('.declaration');
+        winner.textContent = "";
+    }
 
-    };
+});
 
-game();
+const btnPaper = document.querySelector('.Paper')
+
+btnPaper.addEventListener('click', () => {
+    playRound("Paper");
+
+    let newPlayerScore = document.querySelector('.firsth1');
+    newPlayerScore.textContent = playerScore;
+
+    let newComputerScore = document.querySelector('.secondh1');
+    newComputerScore.textContent = computerScore;
+    
+    let newResult = document.querySelector('.resultDeclaration');
+    newResult.textContent = result;
+
+    if (playerScore == 5) {
+        const winner = document.querySelector('.declaration');
+        winner.textContent = "You Rock Because You Won And The Computer Lost";
+        playerScore = 0;
+        computerScore = 0;
+    }
+
+    else if (computerScore == 5) {
+
+        const winner = document.querySelector('.declaration');
+        winner.textContent = "You Do Not Rock Because You Lost and The Computer Won";
+        playerScore = 0;
+        computerScore = 0;
+
+    }
+
+    else if (playerScore == 0 || computerScore == 0 || (playerScore == 1 && computerScore == 1)) {
+        const winner = document.querySelector('.declaration');
+        winner.textContent = "";
+    }
 
 
 
+});
 
+const btnScissors = document.querySelector('.Scissors')
 
+btnScissors.addEventListener('click', () => {
+    playRound("Scissors");
 
+    let newPlayerScore = document.querySelector('.firsth1');
+    newPlayerScore.textContent = playerScore;
 
+    let newComputerScore = document.querySelector('.secondh1');
+    newComputerScore.textContent = computerScore;
 
+    let newResult = document.querySelector('.resultDeclaration');
+    newResult.textContent = result;
+
+    if (playerScore == 5) {
+        const winner = document.querySelector('.declaration');
+        winner.textContent = "You Rock Because You Won And The Computer Lost";
+        playerScore = 0;
+        computerScore = 0;
+    }
+
+    else if (computerScore == 5) {
+
+        const winner = document.querySelector('.declaration');
+        winner.textContent = "You Do Not Rock Because You Lost and The Computer Won";
+        playerScore = 0;
+        computerScore = 0;
+
+    }
+
+    else if (playerScore == 0 || computerScore == 0 || (playerScore == 1 && computerScore == 1)) {
+        const winner = document.querySelector('.declaration');
+        winner.textContent = "";
+    }
+
+});
 
 
 
